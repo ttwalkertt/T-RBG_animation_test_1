@@ -11,6 +11,9 @@ IPAddress ip;
 
 #define getCurrentUnixTime() (time(NULL) + MY_TIMEZONE * 3600)
 
+// the UI class
+UI ui;
+
 // Function to process the command and its argument
 void processCommand(const String& command, const String& argument) {
   if (command == "a") {
@@ -112,8 +115,9 @@ void setup() {
   trgb.init();
   
   // load your UI etc. (see example https://github.com/fablabnbg/TRGBArduinoSupport/tree/main/examples/ui_example)
-  //ui_init();
+  ui.init();
  
+  //Serial.printf("Screen HxW: %d X %d\n", ui.get_screen_height(), ui.get_screen_width());
   #if defined(MY_SSID) 
     ssid = MY_SSID;
   #endif
@@ -122,7 +126,10 @@ void setup() {
         processCommand("pw", password);
     #endif
 
+  
   Serial.write("Done with setup - now you're alive! \n");
+ 
+
 }
 
 void loop() {

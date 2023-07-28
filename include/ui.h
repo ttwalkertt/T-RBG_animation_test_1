@@ -1,4 +1,7 @@
 // ui.h for the ui class
+#include <lvgl.h>
+#include <TRGBSuppport.h>
+
 
 class UI {
     public:
@@ -8,15 +11,19 @@ class UI {
         // Destructor
         ~UI();
 
-    //     // Getter methods
-    //     std::string getName() const;
-    //     int getAge() const;
+        // Methods
+        int init();
+        int get_screen_width();
+        int get_screen_height();
 
-    //     // Setter methods
-    //     void setName(const std::string& name);
-    //     void setAge(int age);
+    private:
+        static constexpr int DispBufSize = 480 * 16;
+        static lv_color_t buf[DispBufSize];
+        static lv_disp_draw_buf_t disp_buf;
+        lv_obj_t * ui_S1Main;
+        int screen_heigth = 0;
+        int screen_width = 0;
 
-    // private:
-    //     std::string name;
-    //     int age;
+       
+
 };
